@@ -1,95 +1,114 @@
-# MiniLibx
+# MiniLibX
 GETTING STARTED WITH THE MINILIBX
+This is a mirror of the minilibx library.
 ### **Description**
 ---
 
 The **minilibx** is a small **C** library used for rendering graphics, primarily used by **42 students**. As the name implies, this library is built on top of the X Window System API, to provide a much simpler programming interface suited for beginners. Indeed, no X knowledge is needed at all to render graphics properly using this kind of library.
 
 ---
+# Compile
 
-## Steps :
-
-### Update/upgrade your system:
-
-* apt-get update
-* apt-get upgrade
-
-### Install the following packages:
-
-* apt install libx11-dev
-* apt install libxext-dev
-* apt install libbsd-dev
-* apt install clang
-
-## Get minilibx sources:
+1. Add a variable named PKG_CONFIG_PATH containing the path to the minilibx
+directory.
+2. Compile and install with
 ```
-git clone https://github.com/42Paris/minilibx-linux minilibx_linux
+make && sudo make install
 ```
 
-#### Compile and install mlx.a in minilibx_linux with
+## Tutorials
 
-* cd minilibx_linux; make && sudo ./configure
+Here some tutorials and articles (in French):
+* [Installation and basic usage](https://achedeuzot.me/2014/12/20/installer-la-minilibx/)
+* [Manual](http://thomas.tissotdupont.free.fr/MinilibX%20Manual/)
 
-#### Change MLXFLAGS in your makefile to:
+## Related projects
 
-* MLXFLAG = -lmlx -lXext -lX11
+* [Binding OCaml](https://github.com/dannywillems/ocaml-minilibx)
 
-## Notes for windows
+## Licence
+
+Licence BSD: Copyright Olivier Crouzet - 2014
+
+Minilibx
+======================================
+
+Ce dépot est un mirroir pour la librairie graphique *minilibx*.
+
+## Qu'est-ce que minilibx ?
+
+Minilibx est une librairie graphique très basique écrite en C utilisée à
+[42](https://42.fr) (aussi exporté aux USA dans la Silicon Valley, voir [42
+US](https://42.us.org)) et à [Epitech](http://www.epitech.eu) pour les projets
+d'infographie tel que *fdf* et *Raytracer*.
+
+Vous pouvez trouver un mirroir pour la version native pour Mac OSX
+[ici](https://github.com/dannywillems/minilibx-mac-osx).
+
+## Compiler
+
+1. Ajouter une variable PKG_CONFIG_PATH contenant le chemin vers le dossier de
+   la minilibx.
+2. Compilation and installation avec
 ```
-* install ubuntu terminal (or other distribution linux ) on windows 10 from windows store
-* do the previous steps + you have to install gcc and make
-```
-### Graphical programs
-
-to run graphical programs on your windows 10 desktop
-
-you need a GUI server, such as X11. Such doesn’t not exist for Windows,
-
-but there are alternatives, one of which is Xming, which can be downloaded
-
-free of charge, from [SourceForge](https://sourceforge.net/projects/xming/) (set private when ask)
-
-then enable bash to use xming which can be done by typing the following line
-
-```
-echo "export DISPLAY=localhost:0.0" >> ~/.bashrc
-```
-
-its preferable to launch xming automatically after boot, move xming program to the following repo:
-
-* C:\Users\login\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Startup
-
-
-- after adding variables such DISPLAY, open a new bash session by typing
-```
- bash
-```
-or
-```
- source ~/.bashrc
-```
-### Extra notes:
-* the process is explained using bash shell, you should modify it by whatever shell you are using (zsh, sh, ..)
-* for events management, the mask should be (1L << 0) instead of 0
-```
-mlx_hook(p.win_ptr, 2, (1L << 0), ft_event_keys, &p);
-```
-* to simplify the usage of keys macros in mac os and linux, include key_macos.h and key_linux.h files:
-```
-# if defined(__APPLE__)
-#  include <key_macos.h>
-# else
-#  include <key_linux.h>
-# endif
+make && sudo make install
 ```
 
-### Docker image
+## Tutoriels
 
-based on alpine: `ilkou/minilibx` or `ilkou/minilibx:1.0.0`
+Ici des articles et des tutoriels (en français):
 
-based on ubuntu: `ilkou/minilibx:ubuntu`
-© 2022 GitHub, Inc.
-Terms
-Privacy
-Security
+* [Installation et utilisation basique](https://achedeuzot.me/2014/12/20/installer-la-minilibx/)
+* [Manuel](http://thomas.tissotdupont.free.fr/MinilibX%20Manual/)
+
+## Projets connexes
+
+* [Binding OCaml](https://github.com/dannywillems/ocaml-minilibx)
+
+## License
+
+License BSD: Copyright Olivier Crouzet - 2014
+
+
+## Original README
+
+
+This is the MinilibX, a simple X-Window (X11R6) programming API
+in C, designed for students, suitable for X-beginners.
+
+
+Contents
+
+ - source code in C to create the mlx library
+ - man pages (in man/ directory)
+ - a test program (in test/ directory) is built
+   with the library
+ - a public include file mlx.h
+ - a tiny configure script to generate an appropriate Makefile.gen
+
+
+Requirements
+
+ - MinilibX only support TrueColor visual type (8,15,16,24 or 32 bits depth)
+ - gcc
+ - X11 include files
+ - XShm extension must be present
+
+
+Compile MinilibX
+
+ - run ./configure or make
+   both will make a few tests, create Makefile.gen
+   and then automatically run make on this generated Makefile.gen .
+   libmlx.a and libmlx_$(HOSTTYPE).a are created.
+   test/mlx-test binary is also created.
+
+
+Install MinilibX
+
+ - no installation script is provided. You may want to install
+     - libmlx.a and/or libmlx_$(HOSTTYPE).a in /usr/X11/lib or /usr/local/lib
+     - mlx.h in /usr/X11/include or /usr/local/include
+     - man/man3/mlx*.1 in /usr/X11/man/man3 or /usr/local/man/man3
+ - or make DESTDIR=/usr/local install
 
